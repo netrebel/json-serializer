@@ -1,0 +1,22 @@
+group = 'com.enernoc.bdap.sonic'
+version = '0.0.1'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "http://archiva.admin.bdap.enernoc.net:8080/archiva/repository/snapshots/"
+    }
+}
+
+dependencies {
+    // The production code uses the SLF4J logging API at compile time
+    compile 'org.slf4j:slf4j-api:1.7.18'
+    compile 'com.google.code.gson:gson:2.6.2'
+
+    testCompile('junit:junit:4.12',
+            'org.hamcrest:hamcrest-junit:2.0.0.0')
+}
