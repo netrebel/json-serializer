@@ -1,5 +1,6 @@
-package com.enernoc.bdap.sonic.common.gson;
+package com.enernoc.bdap.sonic.datamodel.gson;
 
+import com.enernoc.bdap.sonic.datamodel.gson.Json;
 import com.google.gson.Gson;
 import org.hamcrest.Matcher;
 import org.junit.Before;

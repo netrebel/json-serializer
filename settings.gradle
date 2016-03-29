@@ -16,4 +16,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'sonic-common'
+rootProject.name = 'atlas-data-model'
