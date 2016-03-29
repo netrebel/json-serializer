@@ -52,7 +52,8 @@ public class JsonTest {
 
     @Test
     public void testDeserialization() throws Exception {
-        String json = "{\"paramString\":\"hello\",\"paramLong\":1234,\"paramBoolean\":true,\"zonedDateTime\":\"2016-03-28T21:10:12.326Z\",\"simpleDate\":\"2016-03-28T17:10:12-0400\"}";
+        String json = "{\"paramString\":\"hello\",\"paramLong\":1234,\"paramBoolean\":true,\"zonedDateTime\":\"2016-03-28T21:10:12.326Z\",\"simpleDate\":\"2016-03-28T21:10:12.326Z\"}";
+        System.out.println("Deserialize json = " + json);
         SimplePojo pojoFromJson = gson.fromJson(json, SimplePojo.class);
         assertEquals(28, pojoFromJson.zonedDateTime.getDayOfMonth());
         assertEquals(3, pojoFromJson.zonedDateTime.getMonthValue());
