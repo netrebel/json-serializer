@@ -10,9 +10,9 @@ import java.util.Date;
 /**
  * @author miguel.reyes on 3/7/16.
  */
-public class Json {
+public class GsonSerializer {
 
-    private Json() {
+    private GsonSerializer() {
     }
 
     public static Gson createGson() {

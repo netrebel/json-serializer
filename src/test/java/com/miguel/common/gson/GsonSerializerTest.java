@@ -1,6 +1,5 @@
-package com.miguel.common.sonic.datamodel.gson;
+package com.miguel.common.gson;
 
-import com.miguel.common.gson.Json;
 import com.google.gson.Gson;
 import org.hamcrest.Matcher;
 import org.junit.Before;
@@ -19,13 +18,13 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author miguel.reyes on 3/28/16.
  */
-public class JsonTest {
+public class GsonSerializerTest {
 
     /**
      * Match regex pattern: ^\{.*\.\d\d\dZ\".*\}$
      */
     private final Matcher<String> matcher = matchesPattern("^\\{.*\\.\\d\\d\\dZ\".*\\}$");
-    private Gson gson = Json.createGson();
+    private Gson gson = GsonSerializer.createGson();
     private SimplePojo pojo;
 
     @Before

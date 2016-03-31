@@ -18,6 +18,11 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.18'
     compile 'com.google.code.gson:gson:2.6.2'
 
+    compile 'com.fasterxml.jackson.core:jackson-core:2.4.3'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.3'
+
     testCompile('junit:junit:4.12',
             'org.hamcrest:hamcrest-junit:2.0.0.0')
 }
