@@ -1,4 +1,4 @@
-package com.enernoc.bdap.sonic.datamodel.gson;
+package com.miguel.common.gson;
 
 import com.google.gson.*;
 

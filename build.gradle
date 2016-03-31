@@ -1,4 +1,4 @@
-group = 'com.enernoc.bdap.sonic'
+group = 'com.miguel.common'
 version = '0.0.1'
 
 apply plugin: 'java'
@@ -12,7 +12,7 @@ repositories {
     }
 }
 
-archivesBaseName = 'atlas-data-model'
+archivesBaseName = 'json-serializer'
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.18'

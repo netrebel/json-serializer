@@ -1,5 +1,6 @@
-package com.enernoc.bdap.sonic.datamodel.gson;
+package com.miguel.common.gson;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -19,6 +20,7 @@ public class Json {
         builder.registerTypeAdapter(Class.class, new ClassTypeConverter());
         builder.registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeConverter());
         builder.registerTypeAdapter(Date.class, new DateConverter());
+        builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         return builder.create();
     }
 

@@ -1,6 +1,6 @@
-package com.enernoc.bdap.sonic.datamodel.gson;
+package com.miguel.common.sonic.datamodel.gson;
 
-import com.enernoc.bdap.sonic.datamodel.gson.Json;
+import com.miguel.common.gson.Json;
 import com.google.gson.Gson;
 import org.hamcrest.Matcher;
 import org.junit.Before;
@@ -53,7 +53,7 @@ public class JsonTest {
 
     @Test
     public void testDeserialization() throws Exception {
-        String json = "{\"paramString\":\"hello\",\"paramLong\":1234,\"paramBoolean\":true,\"zonedDateTime\":\"2016-03-28T21:10:12.326Z\",\"simpleDate\":\"2016-03-28T21:10:12.326Z\"}";
+        String json = "{\"param_string\":\"hello\",\"param_long\":1234,\"param_boolean\":true,\"zoned_date_time\":\"2016-03-28T21:10:12.326Z\",\"simple_date\":\"2016-03-28T21:10:12.326Z\"}";
         System.out.println("Deserialize json = " + json);
         SimplePojo pojoFromJson = gson.fromJson(json, SimplePojo.class);
         assertEquals(28, pojoFromJson.zonedDateTime.getDayOfMonth());
