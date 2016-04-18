@@ -19,7 +19,6 @@ public class CustomZonedDateTimeSerializer extends JsonSerializer<ZonedDateTime>
 
     @Override
     public void serialize(ZonedDateTime src, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
-        ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(src.toInstant(), Clock.systemUTC().getZone());
-        gen.writeString(zonedDateTime.format(DateTimeFormatter.ISO_INSTANT));
+        gen.writeString(src.format(DateTimeFormatter.ISO_INSTANT));
     }
 }
