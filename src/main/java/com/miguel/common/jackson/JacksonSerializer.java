@@ -1,5 +1,6 @@
 package com.miguel.common.jackson;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,6 +23,7 @@ public class JacksonSerializer {
         mapper.configure(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS, false);
         mapper.configure(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS, false);
         mapper.registerModule(new JavaTimeModule());
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         return mapper;
     }
 
@@ -36,6 +38,7 @@ public class JacksonSerializer {
         module.addDeserializer(ZonedDateTime.class, new CustomZonedDateTimeDeserializer());
         module.addSerializer(ZonedDateTime.class, new CustomZonedDateTimeSerializer());
         mapper.registerModule(module);
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         return mapper;
     }
 }
