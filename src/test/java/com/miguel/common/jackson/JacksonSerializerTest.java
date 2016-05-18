@@ -1,12 +1,15 @@
 package com.miguel.common.jackson;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.matchesPattern;
@@ -59,6 +62,27 @@ public class JacksonSerializerTest {
         assertEquals("UTC", pojoFromJson.zonedDateTime.getZone().getId());
     }
 
+    @Test
+    public void testListDeserialization() throws Exception {
+        SimplePojo sp1 = createSamplePojo();
+        SimplePojo sp2 = createSamplePojo();
+        List<SimplePojo> list = new ArrayList<>();
+        list.add(sp1);
+        list.add(sp2);
+
+        //First make a json from a List
+        String json = objectMapper.writeValueAsString(list);
+        String expectedJson = "[{\"param_string\":\"hello\",\"param_long\":1234,\"param_boolean\":true,\"zoned_date_time\":1463562000000,\"simple_date\":808234200000},{\"param_string\":\"hello\",\"param_long\":1234,\"param_boolean\":true,\"zoned_date_time\":1463562000000,\"simple_date\":808234200000}]";
+        assertEquals(expectedJson, json);
+
+        //Verify that the Json String can be deserialized into a list of objects.
+        JavaType type = objectMapper.getTypeFactory().constructParametricType(List.class, SimplePojo.class);
+        List<SimplePojo> parsedList = objectMapper.readValue(expectedJson, type);
+        assertEquals(2, parsedList.size());
+
+        System.out.println("json = " + json);
+    }
+
     private SimplePojo createSamplePojo() {
         SimplePojo pojo = new SimplePojo();
         pojo.paramString = "hello";
@@ -66,8 +90,8 @@ public class JacksonSerializerTest {
         pojo.paramLong = 1234L;
 
 //        pojo.localDateTime = LocalDateTime.now(ZoneId.of("America/New_York"));
-        pojo.zonedDateTime = ZonedDateTime.now(Clock.systemUTC());
-        pojo.simpleDate = Date.from(Instant.now(Clock.systemUTC()));
+        pojo.zonedDateTime = ZonedDateTime.of(2016, 5,18,9,0,0,0,ZoneId.of("UTC"));
+        pojo.simpleDate = new Date(Date.parse("Sat, 12 Aug 1995 13:30:00 GMT"));
         return pojo;
     }
 
