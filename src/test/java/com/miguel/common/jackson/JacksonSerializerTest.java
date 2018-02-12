@@ -6,7 +6,10 @@ import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.*;
+import java.time.Clock;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,6 +57,17 @@ public class JacksonSerializerTest {
     @Test
     public void testDeserialization() throws Exception {
         String json = "{\"param_string\":\"hello\",\"param_long\":1234,\"param_boolean\":true,\"zoned_date_time\": 1459443301466,\"simple_date\":\"2016-03-28T21:10:12.326Z\"}";
+        System.out.println("Deserialize json = " + json);
+        SimplePojo pojoFromJson = objectMapper.readValue(json, SimplePojo.class);
+        assertEquals(31, pojoFromJson.zonedDateTime.getDayOfMonth());
+        assertEquals(3, pojoFromJson.zonedDateTime.getMonthValue());
+        assertEquals(2016, pojoFromJson.zonedDateTime.getYear());
+        assertEquals("UTC", pojoFromJson.zonedDateTime.getZone().getId());
+    }
+
+    @Test
+    public void testDeserializationUnknownProperties() throws Exception {
+        String json = "{\"param_string\":\"hello\",\"unknown_prop\":\"something-else\",\"param_long\":1234,\"param_boolean\":true,\"zoned_date_time\": 1459443301466,\"simple_date\":\"2016-03-28T21:10:12.326Z\"}";
         System.out.println("Deserialize json = " + json);
         SimplePojo pojoFromJson = objectMapper.readValue(json, SimplePojo.class);
         assertEquals(31, pojoFromJson.zonedDateTime.getDayOfMonth());
